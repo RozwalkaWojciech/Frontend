@@ -56,11 +56,25 @@ function start() {
     let divContent = "";
 
     for (let i = 0; i <= 34; i++) {
-        divContent = divContent + '<div class="letter">' + letters[i] + '</div>';
+        let element = "let" + i;
+        divContent = divContent + '<div class="letter" onclick="check(' + i + ')" id="' + element + '">' + letters[i] + '</div>';
         if ((i + 1) % 7 == 0) divContent = divContent + '<div style="clear: both"></div>';
     }
-
     document.getElementById("alphabet").innerHTML = divContent;
 
+    writeGuesses();
+}
+
+String.prototype.setChar = function (place, char) {
+    if (place > this.length - 1) return this.toString();
+    else return this.substr(0, place) + char + this.substr(place + 1);
+}
+
+function check(number) {
+    for (let i = 0; i < guesses.length; i++) {
+        if (guesses.charAt(i) == letters[number]) {
+            hideGuesses = hideGuesses.setChar(i, letters[number]);
+        }
+    }
     writeGuesses();
 }

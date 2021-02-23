@@ -2,6 +2,8 @@ body {
     background-color: #000000;
     color: lightgrey;
     font-size: 28px;
+    font-family: 'Inconsolata', monospace;
+    font-weight: 700;
 }
 
 #container {
