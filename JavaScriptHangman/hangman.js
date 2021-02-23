@@ -90,6 +90,7 @@ function check(number) {
         document.getElementById(element).style.color = "#00C000";
         document.getElementById(element).style.border = "3px solid #00C000";
         document.getElementById(element).style.cursor = "default";
+        document.getElementById(element).setAttribute("onclick", ";");
 
         writeGuesses();
     } else {
