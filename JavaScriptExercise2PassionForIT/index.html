@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise2</title>
+
+    <script type="text/javascript">
+
+        function writeFunction() {
+
+            let number1 = document.getElementById("field1").value;
+            let number2 = document.getElementById("field2").value;
+            let text = "";
+
+            for (let i = number1; i <= number2; i++) {
+                text = text + i + " ";
+            }
+            document.getElementById("result").innerHTML = text;
+        }
+
+    </script>
+
+</head>
+<body>
+
+<input type="text" id="field1"/>
+<input type="text" id="field2"/>
+<input type="submit" value="Show" onclick="writeFunction()"/>
+
+<div id="result"></div>
+
+</body>
+</html>
