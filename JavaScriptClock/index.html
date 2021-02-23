@@ -1,37 +1,18 @@
 <!DOCTYPE HTML>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Time count</title>
 
-    <script type="text/javascript">
+    <script type="text/javascript" src="timer.js"></script>
 
-        function count() {
-
-            let today = new Date();
-
-            let day = today.getDate();
-            let month = today.getMonth() + 1;
-            let year = today.getFullYear();
-
-            let hour = today.getHours();
-            if (hour < 10) hour = "0" + hour;
-
-            let minute = today.getMinutes();
-            if (minute < 10) minute = "0" + minute;
-
-            let second = today.getSeconds();
-            if (second < 10) second = "0" + second;
-
-            document.getElementById("clock").innerHTML = day + "/" + month + "/" + year + " | " + hour + ":" + minute + ":" + second;
-
-            setTimeout("count()", 1000);
-        }
-    </script>
 </head>
+
 <body onload="count()">
 
 <div id="clock"></div>
 
 </body>
+
 </html>
