@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise</title>
+
+    <script type="text/javascript">
+
+        function check() {
+
+            let number = document.getElementById("field").value;
+
+            if (number > 0) document.getElementById("result").innerHTML = "positive";
+            else if (number < 0) document.getElementById("result").innerHTML = "negative";
+            else if (number == "") document.getElementById("result").innerHTML = "Write the number in the box!";
+            else if (number == 0) document.getElementById("result").innerHTML = "zero";
+            else document.getElementById("result").innerHTML = "It's not a number!";
+        }
+
+    </script>
+
+</head>
+<body>
+
+<input type="text" id="field"/>
+<input type="submit" value="Check" onclick="check()"/>
+
+<div id="result"></div>
+
+</body>
+</html>
