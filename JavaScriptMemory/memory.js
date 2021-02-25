@@ -57,19 +57,57 @@ c10.addEventListener("click", function () {
 c11.addEventListener("click", function () {
     revealCard(11);
 });
-c0.addEventListener("click", function () {
-    revealCard(0);
-});
 
 let oneVisible = false;
 let turnCounter = 0;
+let visibleCardNr;
 
 function revealCard(nr) {
 
-    let img = "url(img/" + cards[nr] + ")";
+    let opacityValue = $('#c' + nr).css('opacity');
 
-    $('#c' + nr).css('background-image', img);
-    $('#c' + nr).addClass('cardActive');
-    $('#c' + nr).removeClass('card');
+    if (opacityValue != 0) {
+        let img = "url(img/" + cards[nr] + ")";
 
+        $('#c' + nr).css('background-image', img);
+        $('#c' + nr).addClass('cardActive');
+        $('#c' + nr).removeClass('card');
+
+        if (oneVisible === false) {
+            //first card
+            oneVisible = true;
+            visibleCardNr = nr;
+        } else {
+            //second card
+            if (cards[visibleCardNr] === cards[nr]) {
+                // alert("pair");
+                setTimeout(function () {
+                    hide2Cards(nr, visibleCardNr)
+                }, 750);
+            } else {
+                //alert("miss");
+                setTimeout(function () {
+                    restore2Cards(nr, visibleCardNr)
+                }, 1000);
+            }
+            turnCounter++;
+            $('.score').html('Turn counter: ' + turnCounter);
+            oneVisible = false;
+        }
+    }
+}
+
+function hide2Cards(nr1, nr2) {
+    $('#c' + nr1).css('opacity', '0');
+    $('#c' + nr2).css('opacity', '0');
+}
+
+function restore2Cards(nr1, nr2) {
+    $('#c' + nr1).css('background-image', 'url(img/card.png)');
+    $('#c' + nr1).addClass('card');
+    $('#c' + nr1).removeClass('cardActive');
+
+    $('#c' + nr2).css('background-image', 'url(img/card.png)');
+    $('#c' + nr2).addClass('card');
+    $('#c' + nr2).removeClass('cardActive');
 }
