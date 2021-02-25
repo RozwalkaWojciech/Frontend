@@ -3,7 +3,6 @@ let cards = ["ciri.png", "geralt.png", "jaskier.png", "jaskier.png", "iorweth.pn
 // alert(cards[4]);
 // console.log(cards);
 
-
 let c0 = document.getElementById('c0');
 let c1 = document.getElementById('c1');
 let c2 = document.getElementById('c2');
@@ -61,12 +60,17 @@ c11.addEventListener("click", function () {
 let oneVisible = false;
 let turnCounter = 0;
 let visibleCardNr;
+let lock = false;
+let pairsLeft = 6;
 
 function revealCard(nr) {
 
     let opacityValue = $('#c' + nr).css('opacity');
 
-    if (opacityValue != 0) {
+    if (opacityValue !== 0 && lock === false) {
+
+        lock = true;
+
         let img = "url(img/" + cards[nr] + ")";
 
         $('#c' + nr).css('background-image', img);
@@ -77,6 +81,7 @@ function revealCard(nr) {
             //first card
             oneVisible = true;
             visibleCardNr = nr;
+            lock = false;
         } else {
             //second card
             if (cards[visibleCardNr] === cards[nr]) {
@@ -100,6 +105,13 @@ function revealCard(nr) {
 function hide2Cards(nr1, nr2) {
     $('#c' + nr1).css('opacity', '0');
     $('#c' + nr2).css('opacity', '0');
+
+    pairsLeft--;
+    if (pairsLeft === 0) {
+        $('.board').html('<h1> You win! <br> Done in  ' + turnCounter + 'turns </h1>')
+    }
+
+    lock = false;
 }
 
 function restore2Cards(nr1, nr2) {
@@ -110,4 +122,6 @@ function restore2Cards(nr1, nr2) {
     $('#c' + nr2).css('background-image', 'url(img/card.png)');
     $('#c' + nr2).addClass('card');
     $('#c' + nr2).removeClass('cardActive');
+
+    lock = false;
 }
